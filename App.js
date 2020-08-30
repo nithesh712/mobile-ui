@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import ListScreen from "./src/screens/ListScreen";
+import ContentScreen from "./src/screens/ContentScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import Profile from "./src/screens/Profile";
+import ActivityScreen from "./src/screens/ActivityScreen";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// const HomeScreen = () => {
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//       <Text>Home Screen</Text>
+//     </View>
+//   );
+// };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const AppNavigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    List: ListScreen,
+    NowPlaying: ContentScreen,
+    Profile: Profile,
+    Activity: ActivityScreen,
   },
-});
+  {
+    initialRouteName: "Profile",
+  }
+);
+
+export default createAppContainer(AppNavigator);
